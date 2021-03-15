@@ -1,5 +1,12 @@
 package br.com.mar03.service;
 
-public class ClienteService {
+import java.util.List;
+
+import br.com.mar03.dto.ClienteDto;
+
+public interface ClienteService {
+	
+
+	public List<ClienteDto> buscarListaDeClientesDTO();
 
 }
