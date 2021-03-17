@@ -22,4 +22,10 @@ public class ClienteServiceImpl implements ClienteService {
 		return ClienteDto.converter(clientes);
 	}
 
+	@Override
+	public ClienteDto salvarClienteDto(Cliente cliente) {
+		Cliente clienteSalvo = clienteRepository.save(cliente);
+		return new ClienteDto(clienteSalvo) ;
+	}
+
 }

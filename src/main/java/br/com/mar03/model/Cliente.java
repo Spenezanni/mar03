@@ -25,7 +25,18 @@ public class Cliente {
 
 	@Column(name="DESCRICAO")
 	private String descricao;
+	
+    public Cliente() {
+    	
+    }
 
+	public Cliente(Long id, String nome, String cpf, String descricao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.descricao = descricao;
+	}
 
 	public Long getId() {
 		return id;
