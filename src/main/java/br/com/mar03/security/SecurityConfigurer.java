@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -17,6 +18,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
+	
+	@Autowired
+	private TokenService toKenService;
 	
 	@Override
 	@Bean
@@ -36,7 +40,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		.antMatchers("/cliente/**").permitAll()
 		.antMatchers("/auth").permitAll()
 		.anyRequest().authenticated()
-		.and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		.and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and().addFilterBefore( new AutenticacaoViaTokenFilter(toKenService), UsernamePasswordAuthenticationFilter.class);
 	}
 
 	public static void main(String[] args) {
