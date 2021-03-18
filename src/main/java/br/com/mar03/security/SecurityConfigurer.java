@@ -12,6 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import br.com.mar03.repository.UserRepository;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
@@ -21,6 +23,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private TokenService toKenService;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Override
 	@Bean
@@ -37,11 +42,11 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
 		.antMatchers("/*/login/**").permitAll()
-		.antMatchers("/cliente/**").permitAll()
+		.antMatchers("/cliente/**").hasRole("ADM")
 		.antMatchers("/auth").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().addFilterBefore( new AutenticacaoViaTokenFilter(toKenService), UsernamePasswordAuthenticationFilter.class);
+		.and().addFilterBefore( new AutenticacaoViaTokenFilter(toKenService, userRepository), UsernamePasswordAuthenticationFilter.class);
 	}
 
 	public static void main(String[] args) {
