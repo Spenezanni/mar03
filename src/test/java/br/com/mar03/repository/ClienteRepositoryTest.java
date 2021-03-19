@@ -2,6 +2,7 @@ package br.com.mar03.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -53,6 +54,13 @@ class ClienteRepositoryTest {
 		Cliente cliente = clienteRepository.findByNome(clienteNome);
 		assertNotNull(cliente);
 		assertEquals(clienteNome, cliente.getNome());
+	}
+	
+	@Test 
+	void naoDeveriaProcurarClientePorNomeNaoExistente() {
+		String clienteNome = "teste";
+		Cliente cliente = clienteRepository.findByNome(clienteNome);
+		assertNull(cliente);
 	}
 	
 }
