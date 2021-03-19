@@ -12,4 +12,6 @@ public interface ClienteService {
 
 	public ClienteDto salvarClienteDto(Cliente cliente);
 
+	public ClienteDto procurarClientePorNome(String nome);
+
 }

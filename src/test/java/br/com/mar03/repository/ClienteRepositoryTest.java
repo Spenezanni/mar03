@@ -1,5 +1,7 @@
 package br.com.mar03.repository;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -44,5 +46,13 @@ class ClienteRepositoryTest {
 		Mockito.when(mock.findAll()).thenReturn(clientes);
 		assertTrue(!clientes.isEmpty());
 	}
-
+	
+	@Test 
+	void procurarClientePorNome() {
+		String clienteNome = "Mara";
+		Cliente cliente = clienteRepository.findByNome(clienteNome);
+		assertNotNull(cliente);
+		assertEquals(clienteNome, cliente.getNome());
+	}
+	
 }

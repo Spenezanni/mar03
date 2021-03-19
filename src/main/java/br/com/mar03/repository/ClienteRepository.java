@@ -7,5 +7,7 @@ import br.com.mar03.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+	
+	Cliente findByNome(String nome);
 
 }

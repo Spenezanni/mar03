@@ -28,4 +28,10 @@ public class ClienteServiceImpl implements ClienteService {
 		return new ClienteDto(clienteSalvo) ;
 	}
 
+	@Override
+	public ClienteDto procurarClientePorNome(String nome) {
+		Cliente clientePorNome = clienteRepository.findByNome(nome);
+		return new ClienteDto(clientePorNome);
+	}
+
 }
