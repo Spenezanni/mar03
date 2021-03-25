@@ -3,6 +3,8 @@ package br.com.mar03.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import br.com.mar03.model.Cliente;
 
 public class ClienteDto {
@@ -38,6 +40,10 @@ public class ClienteDto {
 
 	public static List<ClienteDto> converter(List<Cliente> clientes) {
 		return clientes.stream().map(ClienteDto::new).collect(Collectors.toList());
+	}
+
+	public static Page<ClienteDto> converterPage(Page<Cliente> clientes) {
+		return clientes.map(ClienteDto::new);
 	}
 
 }

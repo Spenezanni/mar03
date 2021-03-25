@@ -56,7 +56,7 @@ class ClienteRepositoryTest {
 		assertEquals(clienteNome, cliente.getNome());
 	}
 	
-	@Test 
+	@Test  
 	void naoDeveriaProcurarClientePorNomeNaoExistente() {
 		String clienteNome = "teste";
 		Cliente cliente = clienteRepository.findByNome(clienteNome);

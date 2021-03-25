@@ -25,12 +25,25 @@ class ClienteControllerTest {
 	void test() throws Exception {
 	
 		URI uri = new URI("/cliente");
-		String json = "\"nome\":\"Mara\",\"descricao\":\"conectado com a VPN\"";
+		String json = "\"nome\":\"invalido@log.com\",\"senha\":\"123\"";
 		
 		mockMvc.perform(MockMvcRequestBuilders.post(uri)
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON))
-		.andExpect(MockMvcResultMatchers.status().is(201));
+		.andExpect(MockMvcResultMatchers.status().is(403));
+		
+	}
+	
+	@Test
+	void test2() throws Exception {
+	
+		URI uri = new URI("/cliente");
+		String json = "\"nome\":\"log@log.com\",\"senha\":\"123\"";
+		
+		mockMvc.perform(MockMvcRequestBuilders.post(uri)
+				.content(json)
+				.contentType(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.status().is(200));
 		
 	}
 
