@@ -1,4 +1,4 @@
-package br.com.mar03.vaidacao;
+package br.com.mar03.validacao;
 
 import java.util.ArrayList;
 import java.util.List;
