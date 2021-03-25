@@ -45,7 +45,7 @@ public class ClienteController {
 		Pageable paginacao = PageRequest.of(page, qtd);
 		return this.clienteService.buscarListaDeClientesDTOPageable(paginacao);
 	}
-	
+			
 	@GetMapping("/{nome}")
 	// @PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<ClienteDto> procurarClientePorNome(@PathVariable String nome) {
